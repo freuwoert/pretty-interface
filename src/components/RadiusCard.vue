@@ -24,7 +24,7 @@ defineProps({
         text-align: left
         line-height: 1.5
         display: flex
-        height: 4rem
+        height: 3rem
         align-items: center
         justify-content: flex-start
         padding: .75rem 1rem

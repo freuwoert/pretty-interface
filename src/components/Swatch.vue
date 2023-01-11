@@ -28,8 +28,8 @@
         text-align: left
         line-height: 1.5
         display: flex
-        aspect-ratio: 1.586
-        align-items: flex-end
+        height: 3rem
+        align-items: center
         justify-content: flex-start
         padding: .75rem 1rem
         border-radius: var(--radius-m)

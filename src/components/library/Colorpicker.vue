@@ -39,6 +39,16 @@
                 <input type="number" class="alpha" :value="Math.round(color.alpha * 100)" min="0" max="100" @input="event => color.alpha = event.target.value / 100">
             </div>
         </div>
+
+        <div class="swatch-layout">
+            <select v-model="swatchPalette">
+                <option value="null">Select a palette</option>
+                <option v-for="palette in swatches" :value="palette.id">{{palette.name}}</option>
+            </select>
+            <div class="grid">
+                <div class="swatch" v-for="swatch in selectedSwatchPalette.colors" :key="swatch.hex" :style="`background: ${swatch.hex};`"></div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -46,6 +56,13 @@
     import AreaSlider from './parts/AreaSlider.vue'
 
     export default {
+        props: {
+            swatches: {
+                type: Array,
+                default: false,
+            },
+        },
+
         data() {
             return {
                 color: {
@@ -55,6 +72,7 @@
                     alpha: 1,
                 },
                 outputMode: 'hex',
+                swatchPalette: null,
             }
         },
 
@@ -75,6 +93,12 @@
 
             fullHexColorString() {
                 return this.rgb2hex(this.hsb2rgb(this.color))
+            },
+
+
+
+            selectedSwatchPalette() {
+                return this.swatches?.find(e => e.id == this.swatchPalette) ?? {colors: []}
             },
         },
 
@@ -372,4 +396,42 @@
 
             select
                 width: 4rem
+
+        .swatch-layout
+            border-bottom: 1px solid rgb(var(--color-border))
+            display: flex
+            flex-direction: column
+            gap: 1rem
+            padding: 1rem
+
+            select, input
+                border: none
+                background: rgb(var(--color-background-soft))
+                color: rgb(var(--color-text))
+                font-family: var(--font-text)
+                padding: 0 .5rem
+                min-width: 0
+                margin: 0
+                border-radius: var(--radius-s)
+                height: 2rem
+                flex: none
+            
+            .grid
+                display: grid
+                grid-template-columns: repeat(auto-fill, minmax(1.8rem, 1fr))
+                gap: .5rem
+
+            .swatch
+                width: 100%
+                aspect-ratio: 1
+                border-radius: var(--radius-s)
+                border: 1px solid rgb(var(--color-border))
+                cursor: pointer
+                user-select: none
+
+                &.selected
+                    border-color: rgb(var(--color-primary))
+
+                &:hover
+                    border-color: rgb(var(--color-primary))
 </style>

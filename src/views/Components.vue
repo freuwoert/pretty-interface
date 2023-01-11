@@ -3,33 +3,29 @@
         <section class="space">
             <div class="limiter inner-layout">
                 <div class="sidebar">
-                    <h2>Colors</h2>
+                    <h2>Variables</h2>
                     <div class="flex vertical gap-1">
-                        <h3>Theme Colors</h3>
+                        <h3>Colors (type color)</h3>
                         <div class="grid margin-bottom-2">
-                            <Swatch title="Primary" background="rgb(var(--color-primary))" color="rgb(var(--color-on-primary))" />
-                            <Swatch title="Accent" background="rgb(var(--color-accent))" color="rgb(var(--color-on-accent))" />
+                            <Swatch title="--color-primary" background="rgb(var(--color-primary))" color="rgb(var(--color-on-primary))" />
+                            <Swatch title="--color-accent" background="rgb(var(--color-accent))" color="rgb(var(--color-on-accent))" />
                             
-                            <Swatch title="Heading" background="rgb(var(--color-heading))" color="rgb(var(--color-background))" />
-                            <Swatch title="Text" background="rgb(var(--color-text))" color="rgb(var(--color-background))" />
-                        </div>
-                        <h3>UI Colors</h3>
-                        <div class="grid margin-bottom-2">
-                            <Swatch title="Border" background="rgb(var(--color-border))" color="rgb(var(--color-heading))" />
-                            <Swatch title="Disabled Border" background="rgb(var(--color-border-disabled))" color="rgb(var(--color-heading))" />
+                            <Swatch title="--color-heading" background="rgb(var(--color-heading))" color="rgb(var(--color-background))" />
+                            <Swatch title="--color-text" background="rgb(var(--color-text))" color="rgb(var(--color-background))" />
                             
-                            <Swatch title="Background" background="rgb(var(--color-background))" color="rgb(var(--color-heading))" />
-                            <Swatch title="Soft Background" background="rgb(var(--color-background-soft))" color="rgb(var(--color-heading))" />
-                            <Swatch title="Disabled Background" background="rgb(var(--color-background-disabled))" color="rgb(var(--color-heading))" />
+                            <Swatch title="--color-border" background="rgb(var(--color-border))" color="rgb(var(--color-heading))" />
+                            <Swatch title="--color-border-disabled" background="rgb(var(--color-border-disabled))" color="rgb(var(--color-heading))" />
+                            
+                            <Swatch title="--color-background" background="rgb(var(--color-background))" color="rgb(var(--color-heading))" />
+                            <Swatch title="--color-background-soft" background="rgb(var(--color-background-soft))" color="rgb(var(--color-heading))" />
+                            <Swatch title="--color-background-disabled" background="rgb(var(--color-background-disabled))" color="rgb(var(--color-heading))" />
+                            
+                            <Swatch title="--color-info" background="rgb(var(--color-info))" color="white" />
+                            <Swatch title="--color-success" background="rgb(var(--color-success))" color="white" />
+                            <Swatch title="--color-warning" background="rgb(var(--color-warning))" color="rgb(var(--color-background))" />
+                            <Swatch title="--color-error" background="rgb(var(--color-error))" color="white" />
                         </div>
-                        <h3>System Colors</h3>
-                        <div class="grid margin-bottom-2">
-                            <Swatch title="Info" background="rgb(var(--color-info))" color="white" />
-                            <Swatch title="Success" background="rgb(var(--color-success))" color="white" />
-                            <Swatch title="Warning" background="rgb(var(--color-warning))" color="white" />
-                            <Swatch title="Error" background="rgb(var(--color-error))" color="white" />
-                        </div>
-                        <h3>Border Radius</h3>
+                        <h3>Border Radius (type length)</h3>
                         <div class="grid margin-bottom-2">
                             <RadiusCard title="S – 4px" radius="var(--radius-s)"/>
                             <RadiusCard title="M – 8px" radius="var(--radius-m)" />
@@ -54,8 +50,12 @@
                             <p>test</p>
                         </pi-popup>
                         <h3>Picker</h3>
-                        <icon-picker />
-                        <pi-colorpicker />
+                        <icon-picker>
+                            <button>Open Picker</button>
+                        </icon-picker>
+                        <pi-colorpicker :swatches="swatches">
+                            <button>Open Colopicker</button>
+                        </pi-colorpicker>
                     </div>
                 </div>
             </div>
@@ -74,6 +74,8 @@
     import IconPicker from '@/components/IconPicker.vue'
     import Swatch from '@/components/Swatch.vue'
     import RadiusCard from '@/components/RadiusCard.vue'
+
+    import swatches from '@/components/data/flat_ui_colors.swatches.json'
 </script>
 
 <style lang="sass" scoped>
@@ -97,6 +99,6 @@
 
     .grid
         display: grid
-        grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr))
+        grid-template-columns: 1fr
         gap: 1rem
 </style>
